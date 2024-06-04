@@ -1,11 +1,15 @@
 const subValue = document.getElementById("subValue");
 const form = document.getElementById("mainForm")
 
+
 form.addEventListener(`submit`, printDigimon)
 
-function printDigimon(e){
+async function printDigimon(e){
+  const digiID = subValue.value
   e.preventDefault();
-  console.log(subValue.value)
+  const dapiGet = await fetch("https://digi-api.com/api/v1/digimon/" +digiID);
+  const digiData = await dapiGet.json();
+  console.log(digiData.name)
 }
 
 async function fetchData() {
